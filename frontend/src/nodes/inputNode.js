@@ -1,6 +1,6 @@
 // inputNode.js
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
@@ -10,15 +10,6 @@ export const InputNode = ({ id, data, selected }) => {
   
   const [currName, setCurrName] = useState(data?.inputName || id.replace('customInput-', 'input_'));
   const [inputType, setInputType] = useState(data.inputType || 'Text');
-
-  useEffect(() => {
-    if (!data?.inputName) {
-      updateNodeField(id, 'inputName', currName);
-    }
-    if (!data?.inputType) {
-      updateNodeField(id, 'inputType', inputType);
-    }
-  }, [id, data, currName, inputType, updateNodeField]);
 
   const handleNameChange = (e) => {
     const value = e.target.value;

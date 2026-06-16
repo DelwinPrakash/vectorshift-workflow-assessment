@@ -1,33 +1,37 @@
-// outputNode.js
+// fileNode.js
 
 import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
 
-export const OutputNode = ({ id, data, selected }) => {
+export const FileNode = ({ id, data, selected }) => {
   const updateNodeField = useStore((state) => state.updateNodeField);
+  const [fileType, setFileType] = useState(data?.fileType || 'TXT');
+  const [filePath, setFilePath] = useState(data?.filePath || '');
 
-  const [currName, setCurrName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
-  const [outputType, setOutputType] = useState(data.outputType || 'Text');
-
-  const handleNameChange = (e) => {
+  const handleFileTypeChange = (e) => {
     const value = e.target.value;
-    setCurrName(value);
-    updateNodeField(id, 'outputName', value);
+    setFileType(value);
+    updateNodeField(id, 'fileType', value);
   };
 
-  const handleTypeChange = (e) => {
+  const handleFilePathChange = (e) => {
     const value = e.target.value;
-    setOutputType(value);
-    updateNodeField(id, 'outputType', value);
+    setFilePath(value);
+    updateNodeField(id, 'filePath', value);
   };
 
   const handles = [
     {
       type: 'target',
       position: Position.Left,
-      id: `${id}-value`,
+      id: `${id}-trigger`,
+    },
+    {
+      type: 'source',
+      position: Position.Right,
+      id: `${id}-content`,
     }
   ];
 
@@ -35,32 +39,19 @@ export const OutputNode = ({ id, data, selected }) => {
     <BaseNode
       id={id}
       selected={selected}
-      title="Output"
-      headerColor="#10b981"
+      title="File Reader"
+      headerColor="#14b8a6"
       handles={handles}
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <span style={{ fontSize: '11px', color: '#64748b' }}>
+          Reads text content from a file source.
+        </span>
         <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontWeight: '500', color: '#64748b' }}>
-          Name:
-          <input 
-            type="text" 
-            value={currName} 
-            onChange={handleNameChange}
-            style={{
-              padding: '6px 8px',
-              borderRadius: '6px',
-              border: '1px solid #cbd5e1',
-              outline: 'none',
-              fontSize: '12px',
-              transition: 'border-color 0.15s ease',
-            }}
-          />
-        </label>
-        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontWeight: '500', color: '#64748b' }}>
-          Type:
+          File Format:
           <select 
-            value={outputType} 
-            onChange={handleTypeChange}
+            value={fileType} 
+            onChange={handleFileTypeChange}
             style={{
               padding: '6px 8px',
               borderRadius: '6px',
@@ -72,9 +63,28 @@ export const OutputNode = ({ id, data, selected }) => {
               transition: 'border-color 0.15s ease',
             }}
           >
-            <option value="Text">Text</option>
-            <option value="File">Image</option>
+            <option value="TXT">Plain Text (.txt)</option>
+            <option value="PDF">PDF Document (.pdf)</option>
+            <option value="CSV">CSV Spreadsheet (.csv)</option>
+            <option value="JSON">JSON File (.json)</option>
           </select>
+        </label>
+        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontWeight: '500', color: '#64748b' }}>
+          File Path/Name:
+          <input 
+            type="text" 
+            placeholder="data/document.txt"
+            value={filePath} 
+            onChange={handleFilePathChange}
+            style={{
+              padding: '6px 8px',
+              borderRadius: '6px',
+              border: '1px solid #cbd5e1',
+              outline: 'none',
+              fontSize: '12px',
+              transition: 'border-color 0.15s ease',
+            }}
+          />
         </label>
       </div>
     </BaseNode>

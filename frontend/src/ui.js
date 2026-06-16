@@ -10,6 +10,11 @@ import { InputNode } from './nodes/inputNode';
 import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
 import { TextNode } from './nodes/textNode';
+import { APINode } from './nodes/apiNode';
+import { DelayNode } from './nodes/delayNode';
+import { FilterNode } from './nodes/filterNode';
+import { MergeNode } from './nodes/mergeNode';
+import { FileNode } from './nodes/fileNode';
 
 import 'reactflow/dist/style.css';
 
@@ -20,6 +25,11 @@ const nodeTypes = {
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
+  apiNode: APINode,
+  delayNode: DelayNode,
+  filterNode: FilterNode,
+  mergeNode: MergeNode,
+  fileNode: FileNode,
 };
 
 const selector = (state) => ({
@@ -47,6 +57,30 @@ export const PipelineUI = () => {
 
     const getInitNodeData = (nodeID, type) => {
       let nodeData = { id: nodeID, nodeType: `${type}` };
+      if (type === 'customInput') {
+        nodeData.inputName = nodeID.replace('customInput-', 'input_');
+        nodeData.inputType = 'Text';
+      } else if (type === 'customOutput') {
+        nodeData.outputName = nodeID.replace('customOutput-', 'output_');
+        nodeData.outputType = 'Text';
+      } else if (type === 'text') {
+        nodeData.text = '{{input}}';
+      } else if (type === 'apiNode') {
+        nodeData.apiName = nodeID.replace('api-', 'api_');
+        nodeData.apiUrl = '';
+        nodeData.apiMethod = 'GET';
+      } else if (type === 'delayNode') {
+        nodeData.delay = 5;
+      } else if (type === 'filterNode') {
+        nodeData.property = 'status';
+        nodeData.condition = 'equals';
+        nodeData.value = '';
+      } else if (type === 'mergeNode') {
+        nodeData.mergeType = 'concatenate';
+      } else if (type === 'fileNode') {
+        nodeData.fileType = 'TXT';
+        nodeData.filePath = '';
+      }
       return nodeData;
     }
 
