@@ -43,25 +43,16 @@ export const FileNode = ({ id, data, selected }) => {
       headerColor="#14b8a6"
       handles={handles}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        <span style={{ fontSize: '11px', color: '#64748b' }}>
+      <div className="flex flex-col gap-2.5">
+        <span className="text-[11px] text-slate-500 leading-normal">
           Reads text content from a file source.
         </span>
-        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontWeight: '500', color: '#64748b' }}>
+        <label className="flex flex-col gap-1 font-medium text-slate-500 text-[11px]">
           File Format:
           <select 
             value={fileType} 
             onChange={handleFileTypeChange}
-            style={{
-              padding: '6px 8px',
-              borderRadius: '6px',
-              border: '1px solid #cbd5e1',
-              outline: 'none',
-              fontSize: '12px',
-              backgroundColor: '#ffffff',
-              cursor: 'pointer',
-              transition: 'border-color 0.15s ease',
-            }}
+            className="px-2.5 py-1.5 rounded-md border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 outline-none text-xs text-slate-700 bg-white cursor-pointer transition-all duration-150"
           >
             <option value="TXT">Plain Text (.txt)</option>
             <option value="PDF">PDF Document (.pdf)</option>
@@ -69,21 +60,14 @@ export const FileNode = ({ id, data, selected }) => {
             <option value="JSON">JSON File (.json)</option>
           </select>
         </label>
-        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontWeight: '500', color: '#64748b' }}>
+        <label className="flex flex-col gap-1 font-medium text-slate-500 text-[11px]">
           File Path/Name:
           <input 
             type="text" 
             placeholder="data/document.txt"
             value={filePath} 
             onChange={handleFilePathChange}
-            style={{
-              padding: '6px 8px',
-              borderRadius: '6px',
-              border: '1px solid #cbd5e1',
-              outline: 'none',
-              fontSize: '12px',
-              transition: 'border-color 0.15s ease',
-            }}
+            className="px-2.5 py-1.5 rounded-md border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 outline-none text-xs text-slate-700 bg-white transition-all duration-150"
           />
         </label>
       </div>

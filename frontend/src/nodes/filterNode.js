@@ -57,42 +57,26 @@ export const FilterNode = ({ id, data, selected }) => {
       headerColor="#f43f5e"
       handles={handles}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        <span style={{ fontSize: '11px', color: '#64748b' }}>
+      <div className="flex flex-col gap-2.5">
+        <span className="text-[11px] text-slate-500 leading-normal">
           Routes data based on a condition.
         </span>
-        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontWeight: '500', color: '#64748b' }}>
+        <label className="flex flex-col gap-1 font-medium text-slate-500 text-[11px]">
           Property:
           <input 
             type="text" 
             placeholder="status"
             value={property} 
             onChange={handlePropertyChange}
-            style={{
-              padding: '6px 8px',
-              borderRadius: '6px',
-              border: '1px solid #cbd5e1',
-              outline: 'none',
-              fontSize: '12px',
-              transition: 'border-color 0.15s ease',
-            }}
+            className="px-2.5 py-1.5 rounded-md border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 outline-none text-xs text-slate-700 bg-white transition-all duration-150"
           />
         </label>
-        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontWeight: '500', color: '#64748b' }}>
+        <label className="flex flex-col gap-1 font-medium text-slate-500 text-[11px]">
           Condition:
           <select 
             value={condition} 
             onChange={handleConditionChange}
-            style={{
-              padding: '6px 8px',
-              borderRadius: '6px',
-              border: '1px solid #cbd5e1',
-              outline: 'none',
-              fontSize: '12px',
-              backgroundColor: '#ffffff',
-              cursor: 'pointer',
-              transition: 'border-color 0.15s ease',
-            }}
+            className="px-2.5 py-1.5 rounded-md border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 outline-none text-xs text-slate-700 bg-white cursor-pointer transition-all duration-150"
           >
             <option value="equals">Equals</option>
             <option value="contains">Contains</option>
@@ -100,21 +84,14 @@ export const FilterNode = ({ id, data, selected }) => {
             <option value="less_than">Less Than</option>
           </select>
         </label>
-        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontWeight: '500', color: '#64748b' }}>
+        <label className="flex flex-col gap-1 font-medium text-slate-500 text-[11px]">
           Value:
           <input 
             type="text" 
             placeholder="active"
             value={value} 
             onChange={handleValueChange}
-            style={{
-              padding: '6px 8px',
-              borderRadius: '6px',
-              border: '1px solid #cbd5e1',
-              outline: 'none',
-              fontSize: '12px',
-              transition: 'border-color 0.15s ease',
-            }}
+            className="px-2.5 py-1.5 rounded-md border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 outline-none text-xs text-slate-700 bg-white transition-all duration-150"
           />
         </label>
       </div>

@@ -5,8 +5,17 @@ import { DraggableNode } from './draggableNode';
 export const PipelineToolbar = () => {
 
     return (
-        <div style={{ padding: '10px' }}>
-            <div style={{ marginTop: '20px', display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+        <div className="bg-slate-900 border-b border-slate-800 px-6 py-4.5 flex flex-col md:flex-row md:items-center justify-between gap-4 font-sans select-none shadow-sm">
+            <div>
+                <h1 className="text-white font-bold text-base tracking-wide flex items-center gap-2">
+                    Pipeline Builder
+                </h1>
+                <p className="text-[11px] text-slate-400 mt-0.5">
+                    Drag and drop nodes onto the canvas to construct your workflow
+                </p>
+            </div>
+            
+            <div className="flex flex-wrap items-center gap-2">
                 <DraggableNode type='customInput' label='Input' />
                 <DraggableNode type='llm' label='LLM' />
                 <DraggableNode type='customOutput' label='Output' />

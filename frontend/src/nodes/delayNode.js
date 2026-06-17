@@ -36,25 +36,18 @@ export const DelayNode = ({ id, data, selected }) => {
       headerColor="#ec4899"
       handles={handles}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        <span style={{ fontSize: '11px', color: '#64748b' }}>
+      <div className="flex flex-col gap-2.5">
+        <span className="text-[11px] text-slate-500 leading-normal">
           Pauses the pipeline execution flow.
         </span>
-        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontWeight: '500', color: '#64748b' }}>
+        <label className="flex flex-col gap-1 font-medium text-slate-500 text-[11px]">
           Delay (seconds):
           <input 
             type="number" 
             min="0"
             value={delay} 
             onChange={handleDelayChange}
-            style={{
-              padding: '6px 8px',
-              borderRadius: '6px',
-              border: '1px solid #cbd5e1',
-              outline: 'none',
-              fontSize: '12px',
-              transition: 'border-color 0.15s ease',
-            }}
+            className="px-2.5 py-1.5 rounded-md border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 outline-none text-xs text-slate-700 bg-white transition-all duration-150"
           />
         </label>
       </div>

@@ -13,21 +13,12 @@ export const BaseNode = ({
 }) => {
   return (
     <div
-      style={{
-        minWidth: '220px',
-        backgroundColor: '#ffffff',
-        border: selected ? '2px solid #4f46e5' : '1px solid #e2e8f0',
-        borderRadius: '12px',
-        boxShadow: selected
-          ? '0 0 0 3px rgba(79, 70, 229, 0.2), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)'
-          : '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05)',
-        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-        fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden',
-        ...style,
-      }}
+      className={`min-w-[220px] bg-white border rounded-xl shadow-sm transition-all duration-200 flex flex-col overflow-hidden font-sans ${
+        selected
+          ? 'ring-2 ring-indigo-500/30 border-indigo-500 shadow-md scale-[1.01]'
+          : 'border-slate-200 hover:border-slate-300 hover:shadow'
+      }`}
+      style={style}
     >
       {/* Handles rendering */}
       {handles.map((handle, index) => (
@@ -46,42 +37,32 @@ export const BaseNode = ({
             cursor: 'crosshair',
             ...handle.style,
           }}
+          className="hover:scale-125 transition-transform"
         />
       ))}
 
       {/* Node Header */}
       <div
+        className="flex items-center justify-between px-3 py-2 border-b border-slate-100"
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          padding: '10px 12px',
-          borderBottom: '1px solid #a4b1beff',
-          background: `linear-gradient(135deg, ${headerColor}0a, ${headerColor}15)`,
+          background: `linear-gradient(135deg, ${headerColor}0d, ${headerColor}1a)`,
           color: '#1e293b',
-          fontWeight: '600',
-          fontSize: '13px',
-          borderTopLeftRadius: '11px',
-          borderTopRightRadius: '11px',
-          userSelect: 'none',
         }}
       >
-        <span>{title}</span>
+        <div className="flex items-center gap-2 font-semibold text-xs">
+          <span 
+            className="w-2 h-2 rounded-full" 
+            style={{ backgroundColor: headerColor }}
+          />
+          <span>{title}</span>
+        </div>
+        <span className="text-[9px] text-slate-400 font-mono tracking-wider uppercase">
+          {id.split('-')[0]}
+        </span>
       </div>
 
       {/* Node Content */}
-      <div
-        style={{
-          padding: '12px 14px',
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-          fontSize: '12px',
-          color: '#475569',
-          backgroundColor: '#fafafa',
-        }}
-      >
+      <div className="p-3.5 flex flex-col gap-3 bg-slate-50/50 flex-1 text-xs text-slate-600">
         {children}
       </div>
     </div>

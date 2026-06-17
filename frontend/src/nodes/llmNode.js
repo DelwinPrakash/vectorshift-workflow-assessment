@@ -32,8 +32,8 @@ export const LLMNode = ({ id, selected }) => {
       headerColor="#8b5cf6"
       handles={handles}
     >
-      <div style={{ padding: '6px 0', color: '#475569', fontSize: '12px' }}>
-        <span>This is a LLM.</span>
+      <div className="py-1 text-slate-500 text-xs">
+        <span>This is a Large Language Model.</span>
       </div>
     </BaseNode>
   );
