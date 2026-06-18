@@ -1,6 +1,6 @@
 // BaseNode.js
 import React from 'react';
-import { Handle } from 'reactflow';
+import { Handle, Position } from 'reactflow';
 
 export const BaseNode = ({
   id,
@@ -13,7 +13,7 @@ export const BaseNode = ({
 }) => {
   return (
     <div
-      className={`min-w-[220px] bg-white border rounded-xl shadow-sm transition-all duration-200 flex flex-col overflow-hidden font-sans ${
+      className={`min-w-[220px] bg-white border rounded-xl shadow-sm transition-all duration-200 flex flex-col font-sans ${
         selected
           ? 'ring-2 ring-indigo-500/30 border-indigo-500 shadow-md scale-[1.01]'
           : 'border-slate-200 hover:border-slate-300 hover:shadow'
@@ -38,12 +38,34 @@ export const BaseNode = ({
             ...handle.style,
           }}
           className="hover:scale-125 transition-transform"
-        />
+        >
+          {handle.label && (
+            <span
+              style={{
+                position: 'absolute',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                fontSize: '9px',
+                color: '#64748b',
+                fontWeight: 500,
+                pointerEvents: 'none',
+                userSelect: 'none',
+                whiteSpace: 'nowrap',
+                textShadow: '0 0 2px #ffffff',
+                ...(handle.position === Position.Left
+                  ? { right: '14px', textAlign: 'right' }
+                  : { left: '14px', textAlign: 'left' }),
+              }}
+            >
+              {handle.label}
+            </span>
+          )}
+        </Handle>
       ))}
 
       {/* Node Header */}
       <div
-        className="flex items-center justify-between px-3 py-2 border-b border-slate-100"
+        className="flex items-center justify-between px-3 py-2 border-b border-slate-100 rounded-t-xl"
         style={{
           background: `linear-gradient(135deg, ${headerColor}0d, ${headerColor}1a)`,
           color: '#1e293b',
@@ -62,7 +84,7 @@ export const BaseNode = ({
       </div>
 
       {/* Node Content */}
-      <div className="p-3.5 flex flex-col gap-3 bg-slate-50/50 flex-1 text-xs text-slate-600">
+      <div className="p-3.5 flex flex-col gap-3 bg-slate-50/50 flex-1 text-xs text-slate-600 rounded-b-xl">
         {children}
       </div>
     </div>
