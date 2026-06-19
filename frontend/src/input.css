@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "/home/dp/delwin/vectorshift-workflow-assessment/frontend/src/**/*.js";
 
 body {
   margin: 0;

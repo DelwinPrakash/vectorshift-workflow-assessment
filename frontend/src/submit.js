@@ -34,7 +34,34 @@ export const SubmitButton = () => {
     };
 
     return (
-        <div className="flex items-center justify-center gap-4 py-5 bg-slate-50 border-t border-slate-200">
+        <div className="flex items-center justify-center gap-4 py-5 bg-slate-50 border-t border-slate-200 relative">
+            {/* Help tooltip for node deletion */}
+            <div className="absolute left-6 bottom-1/2 translate-y-1/2 group">
+                <button 
+                    type="button"
+                    className="flex items-center justify-center p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-amber-600 transition-all duration-200 cursor-help border border-slate-200/60 shadow-sm focus:outline-none"
+                    aria-label="Help"
+                >
+                    {/* Caution / Warning Icon */}
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                    </svg>
+                </button>
+
+                {/* Tooltip Popup */}
+                <div className="absolute bottom-full left-0 mb-3 w-64 p-4 bg-slate-900/95 text-slate-100 text-xs rounded-xl shadow-xl border border-slate-800 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50 backdrop-blur-xs">
+                    <div className="font-bold text-white mb-2 flex items-center gap-1.5 tracking-wide text-xs">
+                        <svg className="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                        </svg>
+                        Deleting a node
+                    </div>
+                    <p className="text-slate-300 leading-relaxed font-sans text-xs">
+                        Select the node, then hold <kbd className="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] font-mono text-white">Ctrl</kbd> and press <kbd className="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] font-mono text-white">Backspace</kbd> twice to delete it.
+                    </p>
+                </div>
+            </div>
+
             <button 
                 type="button"
                 onClick={handleSubmit}
