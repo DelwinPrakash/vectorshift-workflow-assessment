@@ -6,6 +6,7 @@ import { useStore } from './store';
 export const SubmitButton = () => {
     const nodes = useStore((state) => state.nodes);
     const edges = useStore((state) => state.edges);
+    const resetAll = useStore((state) => state.resetAll);
     const [result, setResult] = useState(null);
 
     const handleSubmit = async () => {
@@ -33,13 +34,21 @@ export const SubmitButton = () => {
     };
 
     return (
-        <div className="flex items-center justify-center py-5 bg-slate-50 border-t border-slate-200">
+        <div className="flex items-center justify-center gap-4 py-5 bg-slate-50 border-t border-slate-200">
             <button 
                 type="button"
                 onClick={handleSubmit}
                 className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm rounded-lg shadow-sm hover:shadow hover:ring-2 hover:ring-indigo-500/10 active:scale-98 transition-all duration-150 cursor-pointer"
             >
                 Submit Pipeline
+            </button>
+
+            <button 
+                type="button"
+                onClick={resetAll}
+                className="px-6 py-2.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-semibold text-sm rounded-lg shadow-sm hover:shadow hover:ring-2 hover:ring-slate-500/10 active:scale-98 transition-all duration-150 cursor-pointer"
+            >
+                Reset All
             </button>
 
             {/* Glassmorphic Modal Overlay */}
